@@ -1,0 +1,105 @@
+.hero-section{
+    height: 927px;
+    min-height: calc(100vh - 60px);
+    width: 100%;
+    background: white;
+    background: linear-gradient(to top, #FFF7EC, #fff);
+    position: relative;
+    /* padding: 10px; */
+}
+.hero-section::before{
+    /* left bg pattern */
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 0;
+    width: 163px;
+    height: 578px;
+    background-image: url("/public/bg-pattern-4.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: blur(1px);
+}
+.hero-section::after{
+    /* right bg pattern */
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 0;
+    z-index: 1;
+    width: 561px;
+    max-width: 50vw;
+    min-height: 500px;
+    height: 100%;
+    max-height: 828px;
+    background-image: url("/public/bg-pattern-1.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: blur(1px);
+}
+.content-box{
+    width: 100%;
+    max-width: 1439px;
+    margin: auto;
+    padding: 50px 30px 40px 60px;
+    position: sticky;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 32px;
+}
+.hero-section h1{
+    color: #161514;
+    max-width: 842px;
+    width: 100%;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 68px;
+}
+.hero-section h1 span{
+    color: #FFBD59;
+}
+.hero-section p{
+    max-width: 570px;
+    width: 100%;
+    color: #425366;
+    font-size: 18px;
+    line-height: 24px;
+}
+.get-started-btn{
+    width: 123.27px;
+    height: 44px;
+    text-align: center;
+    background-color: #FFBD59;
+    font-size: 14px;
+    color: #1A1A1A;
+    font-weight: 600;
+    border-radius: 6px;
+    box-shadow: 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+    border: none;
+    padding: 10px;
+    transition: all 0.2s ease-in;
+    &:hover{
+        transform: scale(1.05);
+        background-color: #fcb750;
+        box-shadow: 0px 1px 14px 0px #FFBD59;
+    }
+}
+@media screen and (max-width:767px) {
+    .content-box{
+        padding: 30px;
+        min-height: 70vh;
+        place-content: center;
+        h1{
+            font-size: 28px;
+            line-height: 1.3em;
+        }
+        p{
+            font-size: 18px;
+        }
+    }
+}

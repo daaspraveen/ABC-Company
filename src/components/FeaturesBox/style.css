@@ -1,0 +1,27 @@
+.features-box{
+    width: 100%;
+    min-height: auto;
+    background-color: whitesmoke;
+    background: url('/public/bg-pattern-2.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+@media screen and (max-width: 767px) {
+    .features-box{
+        width: 100vw;
+        background-size: cover;
+        background-image: url('/public/bg-pattern-2.png');
+        background-position: center center;
+        position: relative;
+        &::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            height: calc(224px * 5 + 200px);
+            background-color: #ffffff99;
+        }
+    }
+}
