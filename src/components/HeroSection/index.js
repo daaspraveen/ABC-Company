@@ -32,7 +32,7 @@ const HeroSection = () => {
             }
         }
         fetchHeading();
-    }, [heading])
+    }, [heading, sampleHeading])
 
     return (
         <section className="hero-section">
