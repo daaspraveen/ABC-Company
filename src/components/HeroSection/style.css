@@ -90,12 +90,15 @@
     }
 }
 @media screen and (max-width:767px) {
+    .hero-section{
+        height: auto;
+    }
     .content-box{
         padding: 30px;
         min-height: 70vh;
         place-content: center;
         h1{
-            font-size: 28px;
+            font-size: 32px;
             line-height: 1.3em;
         }
         p{

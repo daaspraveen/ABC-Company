@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# 📑 ABC Company Website & CMS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Build a pixel‑perfect, **responsive** landing page that pulls its main heading from a CMS you host yourself.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🛠 Tech Stack
+| Layer        | Tech                       |
+|--------------|----------------------------|
+| Front‑end    | **React**, **CoreUi**      |
+| Back‑end     | **Spring Boot 3**          |
+| Database     | **MySQL** (any SQL OK)     |
+| Deploy demo  | Netlify (FE) · Render (BE) |
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Quick Start
 
-### `npm test`
+1. **Clone & install**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   git clone https://github.com/your‑org/abc‑site.git
+   cd abc‑site
+   npm install          # front‑end
+   cd server && ./mvnw clean install
 
-### `npm run build`
+2. **Configure DB – create /server/.env**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/abc_cms
+   SPRING_DATASOURCE_USERNAME=abc_user
+   SPRING_DATASOURCE_PASSWORD=secret
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```
 
-### `npm run eject`
+2. **Run Locally**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   # API
+   cd server && ./mvnw spring-boot:run
+   # UI
+   cd ../client && npm run dev
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔗 Links
+[![Link](https://img.shields.io/badge/UI_link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://abc-company-das.netlify.app)
+[UI] : (https://abc-company-das.netlify.app)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[![Link](https://img.shields.io/badge/API_link-000?style=for-the-badge&logo=&logoColor=white)](https://abc-company-das.render.com/api/v1/heading)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[API] : (http://localhost:8080/api/v1/heading)
+or
 
-## Learn More
+[API] : (https://abc-company-das.render.com/api/v1/heading)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🗂 Project Structure
+   ```bash
+abc‑company-website/
+     ├─ client/          # React UI
+     │   └─ src/
+     │   ├─ components/
+     │   ├─ pages/
+     │   └─ App.jsx
+     └─ server/          # Spring Boot
+         ├─ src/main/java/com/abc/…
+         ├─ src/main/resources/
+         └─ Application.java
 
-### Code Splitting
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🌐 Deployment 
+``` bash
+# Front (build → Netlify/Vercel)
+cd client && npm run build
 
-### Analyzing the Bundle Size
+# Back (JAR → Render/Fly.io/AWS)
+cd ../server && ./mvnw package
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
 
-### Making a Progressive Web App
+## ✅ Done‑Checklist
+    Pixel‑perfect landing (Figma)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    Single dynamic heading via CMS
 
-### Advanced Configuration
+    Responsive @ ≥ 320 px
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    GET / POST APIs with validation
 
-### Deployment
+    Clean, commented code + docs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📸 ScreenShots

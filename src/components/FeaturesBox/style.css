@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 767px) {
     .features-box{
-        width: 100vw;
+        width: 100%;
         background-size: cover;
         background-image: url('/public/bg-pattern-2.png');
         background-position: center center;
@@ -19,7 +19,7 @@
             content: '';
             position: absolute;
             top: 0;
-            width: 100vw;
+            width: 100%;
             height: calc(224px * 5 + 200px);
             background-color: #ffffff99;
         }

@@ -1,86 +1,118 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import apiUrl from '../../apis.js';
+import axios from "axios";
+
+import "./style.css";
+
+const sampleHeading =
+  "Hyper boost your Revenue Management, Marketing and Commercial Functions with Business Ready AI";
 
 const Admin = () => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [text, setText] = useState(
-    "Hyper boost your Revenue Management, Marketing and Commercial Functions with Business Ready AI"
-  );
+  const [headingInput, setHeadingInput] = useState(sampleHeading);
+  const [saved, setSaved] = useState("Save");
+  const textAreaRef = useRef(null);
 
-  const handleEditClick = () => {
-    setIsEditing(true);
+  const updateHeadingInp = (e) => {
+    const text = e.target.value;
+    setHeadingInput(text);
   };
 
-  const handleSaveClick = () => {
-    setIsEditing(false);
+  const doFocusTextarea = () => {
+    if (textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
   };
+
+  const maxCharError = `** characters used: ${headingInput.length} / 200`;
+
+  const doSave = () => {
+    setSaved("Saving...");
+    saveHeadingApi(headingInput.trim());
+  };
+  const doSaveTimer = (name) => {
+    setSaved(name);
+    setTimeout(() => {
+      setSaved("Save");
+    }, 2000);
+  };
+
+  const saveHeadingApi = async (text) => {
+    console.log(text);
+    try {
+      const resp = await axios.post(apiUrl, { text });
+      console.log(resp);
+      doSaveTimer("Saved");
+    } catch (e) {
+      console.log("Error in api posting heading:", e);
+      doSaveTimer("Not Saved");
+      // console.error(e);
+    }
+  };
+
+  const getHeadingApi = async () => {
+    try {
+      const resp = await axios.get(apiUrl);
+      console.log(resp);
+      if (resp.data && resp.data.text) {
+        setHeadingInput(resp.data.text);
+      }
+    } catch (e) {
+      console.log("Error in fetching heading Api :", e);
+    }
+  };
+
+  useEffect(() => {
+    getHeadingApi();
+  }, []);
 
   return (
     <main>
-      <section style={styles.container}>
-        <div style={styles.header}>Heading</div>
-        {isEditing ? (
+      <section className="admin-section">
+        <h1>Admin Panel</h1>
+        <div className="admin-content-box">
+          <button
+            type="button"
+            className="heading-btn"
+            onClick={doFocusTextarea}
+          >
+            Heading
+          </button>
           <textarea
-            style={styles.textArea}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            name="heading-text"
+            ref={textAreaRef}
+            rows={8}
+            className="textarea"
+            value={headingInput}
+            onChange={updateHeadingInp}
+            placeholder="Enter Your Heading Text"
           />
-        ) : (
-          <div style={styles.text}>{text}</div>
-        )}
-        <div style={styles.buttonContainer}>
-          {isEditing ? (
-            <button style={styles.button} onClick={handleSaveClick}>
-              Save
-            </button>
-          ) : (
-            <button style={styles.button} onClick={handleEditClick}>
-              Edit
-            </button>
-          )}
+          <span
+            className={`maxchars-error ${
+              headingInput.length > 200 ? "active-error" : ""
+            }`}
+          >
+            {maxCharError}
+          </span>
+          <br />
+          <button type="button" className="edit-btn" onClick={doFocusTextarea}>
+            Edit
+          </button>
+          <button
+            type="button"
+            disabled={!(headingInput.length <= 200 && saved === "Save")}
+            onClick={doSave}
+            className={`save-btn ${
+              headingInput.length <= 200 && saved === "Save"
+                ? "saving-btn"
+                : "unsave-btn"
+            }`}
+          >
+            {saved}
+          </button>
         </div>
       </section>
     </main>
   );
-};
-
-const styles = {
-  container: {
-    backgroundColor: "#f5f5f5", // Light background
-    padding: "20px",
-    borderRadius: "10px",
-    maxWidth: "400px",
-    margin: "auto",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-  },
-  header: {
-    fontWeight: "bold",
-    fontSize: "20px",
-    marginBottom: "10px",
-  },
-  text: {
-    marginBottom: "10px",
-    whiteSpace: "pre-wrap",
-  },
-  textArea: {
-    width: "100%",
-    height: "100px",
-    marginBottom: "10px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    padding: "10px",
-  },
-  buttonContainer: {
-    display: "flex",
-    justifyContent: "flex-start",
-  },
-  button: {
-    backgroundColor: "#e0e0e0",
-    border: "none",
-    borderRadius: "5px",
-    padding: "10px 15px",
-    cursor: "pointer",
-    marginRight: "10px",
-  },
 };
 
 export default Admin;
