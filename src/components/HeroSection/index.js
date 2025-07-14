@@ -4,15 +4,27 @@ import apiUrl from '../../apis.js';
 import './style.css'
 
 const HeroSection = () => {
-    const sampleHeading = `Hyper boost your <span>Revenue Management, Marketing</span> and Commercial Functions with Business Ready AI`;
+    const sampleHeading = `Hyper boost your Revenue Management, Marketing and Commercial Functions with Business Ready AI`;
+    
     const [heading, setHeading] = useState(sampleHeading);
 
     useEffect(() => {
         const fetchHeading = async () => {
             try {
                 const resp = await axios.get(apiUrl);
-                console.log(resp);
-                setHeading(resp);
+                if (resp.data && resp.data.text){
+                    const newData = resp.data.text;
+                    // console.log(newData);
+                    if (resp.data.text.split(' ').length >6){
+                        const updatedText = newData.split(' ').slice(0,3).join(' ')+' <span>'+
+                            newData.split(' ').slice(3, 6).join(' ')+'</span> '+
+                            newData.split(' ').splice(6).join(' ');
+                        setHeading(updatedText);
+                        // console.log(updatedText);
+                    } else {
+                        setHeading(resp.data.text);
+                    }
+                }
             } catch (e) {
                 console.log("Error in Api")
                 // console.error(e);
@@ -20,7 +32,7 @@ const HeroSection = () => {
             }
         }
         fetchHeading();
-    }, [])
+    }, [heading])
 
     return (
         <section className="hero-section">
