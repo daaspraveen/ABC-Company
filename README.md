@@ -1,96 +1,101 @@
-# 📑 ABC Company Website & CMS
+# 📑 ABC Company Website & CMS
 
-Build a pixel‑perfect, **responsive** landing page that pulls its main heading from a CMS you host yourself.
+Pixel‑perfect, **responsive** landing page whose main heading text is managed by your own CMS.
 
 ---
 
 ## 🛠 Tech Stack
-| Layer        | Tech                       |
-|--------------|----------------------------|
-| Front‑end    | **React**, **CoreUi**      |
-| Back‑end     | **Spring Boot 3**          |
-| Database     | **MySQL** (any SQL OK)     |
-| Deploy demo  | Netlify (FE) · Render (BE) |
 
----
+| Layer      | Tech                                   |
+|------------|----------------------------------------|
+| Front‑end  | **React**, CoreUI                      |
+| Back‑end   | **Spring Boot 3**                      |
+| Database   | **MySQL** (cloud instance on Railway)  |
+| Demo Host  | Netlify (FE) · Railway (BE)            |
 
 ---
 
 ## 🚀 Quick Start
 
-1. **Clone & install**
+### 1. Clone & Install
 
-   ```bash
-   git clone https://github.com/your‑org/abc‑site.git
-   cd abc‑site
-   npm install          # front‑end
-   cd server && ./mvnw clean install
-
-2. **Configure DB – create /server/.env**
-
-   ```bash
-
-   SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/abc_cms
-   SPRING_DATASOURCE_USERNAME=abc_user
-   SPRING_DATASOURCE_PASSWORD=secret
-
-   ```
-
-2. **Run Locally**
-
-   ```bash
-   # API
-   cd server && ./mvnw spring-boot:run
-   # UI
-   cd ../client && npm run dev
-
-## 🔗 Links
-[![Link](https://img.shields.io/badge/UI_link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://abc-company-das.netlify.app)
-[UI] : (https://abc-company-das.netlify.app)
-
-[![Link](https://img.shields.io/badge/API_link-000?style=for-the-badge&logo=&logoColor=white)](https://abc-company-das.render.com/api/v1/heading)
-
-[API] : (http://localhost:8080/api/v1/heading)
-or
-
-[API] : (https://abc-company-das.render.com/api/v1/heading)
-
-
-## 🗂 Project Structure
-   ```bash
-abc‑company-website/
-     ├─ client/          # React UI
-     │   └─ src/
-     │   ├─ components/
-     │   ├─ pages/
-     │   └─ App.jsx
-     └─ server/          # Spring Boot
-         ├─ src/main/java/com/abc/…
-         ├─ src/main/resources/
-         └─ Application.java
-
-```
-
-## 🌐 Deployment 
 ``` bash
-# Front (build → Netlify/Vercel)
-cd client && npm run build
+git clone https://github.com/your‑org/abc‑site.git
+    cd abc‑site
+# Front‑end
+    cd client && npm install
 
-# Back (JAR → Render/Fly.io/AWS)
-cd ../server && ./mvnw package
-
+# Back‑end
+    cd ../server && ./mvnw clean install
 ```
+# 2. Configure DB (Railway)
 
-## ✅ Done‑Checklist
-    Pixel‑perfect landing (Figma)
+Create or edit /server/src/main/resources/application.properties:
 
-    Single dynamic heading via CMS
+    spring.datasource.url=jdbc:mysql://interchange.proxy.rlwy.net:51145/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    spring.datasource.username=root
+    spring.datasource.password=wvagmyUJhTpVRNtpGiNlhWIHJapbdBYq
 
-    Responsive @ ≥ 320 px
+    spring.jpa.hibernate.ddl-auto=update
+    spring.jpa.show-sql=true
+    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
 
-    GET / POST APIs with validation
+``
+#  3 · Run Locally
 
-    Clean, commented code + docs
+### API
+    cd server && ./mvnw spring-boot:run
+
+### UI (new terminal)
+    cd ../client && npm run dev
 
 
-## 📸 ScreenShots
+# 🔗 Links
+
+    Service	URL
+    UI (Netlify)	https://abc-company-das.netlify.app
+    API – live (Railway)	https://abc-company-production.up.railway.app/heading
+    API – local	http://localhost:8080/heading
+
+
+### 🗂 Project Structure
+
+    abc‑company-website/
+    ├─ client/                # React UI
+    │  └─ src/
+    │     ├─ components/
+    │     ├─ pages/
+    │     └─ App.jsx
+    └─ server/                # Spring Boot backend
+       ├─ src/main/java/com/abc_company/…
+       ├─ src/main/resources/
+       └─ AbcCompanyApplication.java
+
+
+### 🌐 Deployment
+
+# Front‑end → Netlify
+    cd client
+    npm run build
+
+# Back‑end → Railway
+    cd ../server
+    ./mvnw package     # Railway auto‑detects & deploys JAR from GitHub
+
+
+### ✅ Done Checklist
+
+     Pixel‑perfect landing (Figma)
+    
+     Single dynamic heading via CMS
+    
+     Responsive ≥ 320 px
+    
+     Secure GET / POST APIs with validation
+    
+     Clean, commented code & README docs
+
+
+### 📸 Screenshots/Video Recording
+
+[Video Recording](https://drive.google.com/file/d/15XdW5cEmFGn0qbzVnh-Q6HqDHv07deU4/view?usp=sharing)
